@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <title>Videomat | Leaflet Gesture Handling</title>
+
+</head>
+
+<body>
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+  <!-- Leaflet Gesture Handling -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-gesture-handling/dist/leaflet-gesture-handling.min.css">
+  <script src="https://unpkg.com/leaflet-gesture-handling"></script>
+
+  <div id="map" style="width:100%; height:600px;"></div>
+
+  <script>
+    var map = L.map("map", {
+      center: [47.06204649092334, 15.446670055389406],
+      zoom: 16,
+      gestureHandling: true
+    });
+
+    var OpenStreetMap_Mapnik = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      minZoom: 4
+    }).addTo(map);
+
+    var popupContent = '<div class="leaflet-popup-content" style="width: 130px;"><p><a href="https://goo.gl/maps/vD6nkhhyZf7aCRke9" target="_blank" rel="noreferrer noopener"><img class="wp-image-1098" style="width: 150px;" src="https://videomat.org/wp-content/uploads/2023/01/videomat.png" alt=""></a></p><p></p><p><a href="https://goo.gl/maps/vD6nkhhyZf7aCRke9" target="_blank" rel="noreferrer noopener">Google Maps öffnen</a></p></div>';
+
+    var greenIcon = L.icon({
+      iconUrl: 'https://videomat.org/wp-content/uploads/videomat-maps-pin.png',
+      iconSize: [60, 60], // size of the icon
+      iconAnchor: [30, 60], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, -60] // point from which the popup should open relative to the iconAnchor
+    });
+
+    //Add markers
+    var marker = new L.marker([47.06204649092334, 15.446670055389406], { icon: greenIcon })
+      .bindPopup(popupContent)
+      .addTo(map);
+  </script>
+
+
+</body>
+
+</html>
